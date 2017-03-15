@@ -22,7 +22,7 @@ class Instagram
             throw new InstagramNotFoundException('Account with given username does not exist.');
         }
         if($response->code === 429){
-            throw new InstagramException('Response code is ' . $response->code . '. Raw_Body: ' . $response->raw_body);
+            throw new InstagramException('Response code is ' . $response->code . '. Message: ' . json_decode($response->raw_body)->message);
         }
         if ($response->code !== 200) {
             throw new InstagramException('Response code is ' . $response->code . '. Body: ' . $response->body . ' Something went wrong. Please report issue.');
